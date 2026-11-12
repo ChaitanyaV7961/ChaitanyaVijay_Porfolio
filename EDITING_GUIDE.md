@@ -267,10 +267,18 @@ Change the hex values to change the palette consistently across the site. The re
 
 Open `src/utils/site.ts`. The `site` object stores your name, GitHub URL, email, LinkedIn URL and intended CV filename. Replace the empty `email` and `linkedin` values with your preferred public contact details when ready.
 
-The visible contact-page layout is in `src/pages/contact.astro`. Add a new link there if you want to show an email address, LinkedIn profile or CV button. For an Astro page link to the CV, use:
+The visible contact-page layout is in `src/pages/contact.astro`. Add a new link there if you want to show an email address, LinkedIn profile or CV button.
+
+The file currently imports only `site`. Before using `withBase(site.cv)`, change its import line to:
 
 ```astro
-<a class="button" href={withBase(site.cv)} download>Download CV ↗</a>
+import { withBase, site } from "../utils/site";
+```
+
+Then add this anchor inside the first column of the `contact-grid`:
+
+```astro
+<a class="contact-link" href={withBase(site.cv)} download>Download CV <span>↗</span></a>
 ```
 
 The CV PDF must exist at `public/files/Chaitanya_V_CV.pdf` for that button to work.
