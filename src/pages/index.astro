@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../utils/site";
+const allProjects = await getCollection("projects");
+const featuredOrder = ["briefkasten-ninja", "sentinel-1-sar-flood-mapping", "ecommerce-analytics"];
+const projects = featuredOrder.map(slug => allProjects.find(p => p.slug === slug)).filter(Boolean);
+---
+<BaseLayout title="Chaitanya V. — Business | Data | AI | Technology" description="I work at the intersection of business, data, AI, and technology.">
+  <div class="container">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <h1 class="display-title">I work at the intersection of business, data, AI, and <em>technology.</em></h1>
+        <p class="lead">I'm pursuing my Master's in Business Analytics & Operations Research at KU Eichstätt-Ingolstadt. My experience spans finance, business operations, analytics and process improvement.</p>
+        <p class="body-copy">Through my academic work and projects, I explore how data, automation and AI can solve practical business problems and create measurable impact.</p>
+        <div class="hero-actions">
+          <a class="button" href={withBase("projects/")}>Explore my projects <span>↗</span></a>
+          <a class="text-link" href={withBase("about/")}>About me <span>→</span></a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Abstract data and satellite imagery composition">
+        <div class="art-orbit"></div><div class="art-dot"></div><div class="hero-mark"></div>
+        <svg class="art-map" viewBox="0 0 500 330" role="img" aria-label="Abstract topographic pattern">
+          <defs><pattern id="contours" width="80" height="60" patternUnits="userSpaceOnUse"><path d="M-10 30 Q20 0 48 28 T100 20 M-10 48 Q24 16 54 48 T100 42" fill="none" stroke="#74817b" stroke-width="1.2" opacity=".65"/></pattern></defs>
+          <rect width="500" height="330" fill="#d8ddd5"/><rect width="500" height="330" fill="url(#contours)"/>
+          <path d="M0 210 C90 150 110 240 190 175 S310 90 360 145 S440 190 500 105" fill="none" stroke="#315fd4" stroke-width="25" opacity=".72"/>
+          <path d="M0 210 C90 150 110 240 190 175 S310 90 360 145 S440 190 500 105" fill="none" stroke="#f5f4f0" stroke-width="3" opacity=".9"/>
+        </svg>
+        <div class="art-card">
+          <svg viewBox="0 0 300 110" aria-label="Illustrative analytics chart">
+            <path d="M8 90 L45 72 L80 78 L115 48 L150 57 L190 32 L230 39 L275 10" fill="none" stroke="#315fd4" stroke-width="3"/>
+            <path d="M8 90 L45 72 L80 78 L115 48 L150 57 L190 32 L230 39 L275 10 L275 105 L8 105Z" fill="#e5ebfb" opacity=".7"/>
+            {Array.from({length:10},(_,i)=><rect x={10+i*28} y={88-(i*6%48)} width="12" height={17+(i*6%48)} fill={i%3===0?"#a7b8a2":"#cbd6f2"}/>)}
+          </svg>
+          <span class="eyebrow">DATA · INSIGHT · ACTION</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities" aria-label="Areas of work">
+      <div class="capability"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.5"><path d="M4 11 16 4l12 7-12 7L4 11Z M4 17l12 7 12-7 M4 23l12 7 12-7"/></svg>Business & Finance</div>
+      <div class="capability"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.5"><path d="M4 28V17h6v11M14 28V9h6v19M24 28V3h5v25"/></svg>Data & Analytics</div>
+      <div class="capability"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.5"><rect x="7" y="7" width="18" height="18" rx="2"/><path d="M11 2v5m5-5v5m5-5v5M11 25v5m5-5v5m5-5v5M2 11h5m-5 5h5m-5 5h5m18-10h5m-5 5h5m-5 5h5"/></svg>AI & Machine Learning</div>
+      <div class="capability"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.5"><rect x="3" y="3" width="10" height="10"/><rect x="19" y="3" width="10" height="10"/><rect x="3" y="19" width="10" height="10"/><rect x="19" y="19" width="10" height="10"/></svg>CRM & Digital Transformation</div>
+      <div class="capability"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.5"><path d="M27 4C12 4 4 11 5 23c1 5 5 6 9 4C24 21 27 4 27 4Z M7 27 20 12"/></svg>Sustainability & Strategy</div>
+    </section>
+
+    <section class="featured">
+      <div class="featured-head"><h2>Selected work</h2><a class="text-link" href={withBase("projects/")}>View all projects <span>↗</span></a></div>
+      <div class="project-grid">
+        {projects.map((project,i)=>(
+          <a class="project-card" href={withBase(`projects/${project.slug}/`)}>
+            <div class="project-visual">
+              {i===0 ? <svg viewBox="0 0 360 190" width="90%" aria-label="Document AI workflow illustration"><rect x="12" y="35" width="72" height="100" rx="5" fill="#fffefa" stroke="#cbd1d1"/><path d="M28 60h40M28 76h40M28 92h30" stroke="#315fd4" stroke-width="4"/><path d="M96 85h42m-10-10 10 10-10 10" stroke="#66717b" stroke-width="2" fill="none"/><circle cx="180" cy="85" r="38" fill="#e5ebfb"/><path d="M180 57v56m-28-28h56m-48-20 40 40m0-40-40 40" stroke="#315fd4" stroke-width="3"/><path d="M226 85h42m-10-10 10 10-10 10" stroke="#66717b" stroke-width="2" fill="none"/><rect x="278" y="35" width="70" height="100" rx="5" fill="#e6ece3" stroke="#b9c8b4"/><path d="m294 85 12 12 27-30" fill="none" stroke="#58705c" stroke-width="5"/></svg> : i===1 ? <svg viewBox="0 0 360 190" width="100%" aria-label="Satellite flood mapping illustration"><rect width="360" height="190" fill="#d7dbd3"/><path d="M0 40 90 15 150 55 230 22 360 45 360 190 240 160 170 184 80 145 0 165Z" fill="#a7b8a2"/><path d="M0 112 65 83 110 101 145 70 190 88 230 55 270 82 360 48 360 116 300 130 250 115 205 150 140 132 80 160 0 150Z" fill="#315fd4"/><path d="M0 122 65 93 110 111 145 80 190 98 230 65 270 92 360 58" fill="none" stroke="#f5f4f0" stroke-width="3"/></svg> : <svg viewBox="0 0 360 190" width="90%" aria-label="Analytics chart illustration"><path d="M25 150H335M25 20V150" stroke="#aab1b4"/>{Array.from({length:9},(_,j)=><rect x={45+j*31} y={120-(j*13%75)} width="17" height={30+(j*13%75)} fill={j%2?"#a7b8a2":"#9bb2eb"}/>)}<path d="M45 110 75 95 106 101 137 72 168 78 199 56 230 61 261 35 292 42 325 18" fill="none" stroke="#315fd4" stroke-width="3"/></svg>}
+            </div>
+            <div class="project-content"><span class="eyebrow">{project.data.category}</span><h3>{project.data.title}</h3><p>{project.data.summary}</p><div class="tag-list">{project.data.tags.slice(0,3).map((tag,j)=><span class:list={["tag",j===1?"sage":j===2?"lavender":""]}>{tag}</span>)}</div></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-stats">
+      <div class="stat"><strong>3+ years</strong><span>Professional experience</span></div>
+      <div class="stat"><strong>6+</strong><span>Projects & research works</span></div>
+      <div class="stat"><strong>MSc BAOR</strong><span>KU Eichstätt-Ingolstadt</span></div>
+      <div class="stat"><strong>Germany</strong><span>Based in Ingolstadt</span></div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import { withBase } from "../../utils/site";
+export async function getStaticPaths(){const papers=await getCollection("research");return papers.map(p=>({params:{slug:p.slug},props:{paper:p}}));}
+const {paper}=Astro.props;const {Content}=await render(paper);
+---
+<BaseLayout title={`${paper.data.title} — Research & Writing`}>
+  <div class="container">
+    <section class="page-intro"><div><a class="text-link" href={withBase("research/")}>← All research</a><div class="eyebrow" style="margin-top:24px">{paper.data.category} · {paper.data.year || "ACADEMIC WORK"}</div><h1 class="display-title" style="font-size:clamp(36px,4.5vw,62px);margin-top:12px">{paper.data.title}</h1></div><p class="lead">{paper.data.summary}</p></section>
+    <section class="content-section detail-body"><Content /></section>
+  </div>
+</BaseLayout>

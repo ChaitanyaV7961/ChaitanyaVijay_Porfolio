@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../../utils/site";
+const papers = await getCollection("research");
+const categories = ["All", ...new Set(papers.map(p=>p.data.category))];
+---
+<BaseLayout title="Research & Writing — Chaitanya V.">
+  <div class="container">
+    <section class="page-intro"><div><span class="eyebrow">RESEARCH & WRITING</span><h1 class="display-title">Ideas, questions <em>& analysis.</em></h1></div><p class="lead">Academic work and research exploring corporate governance, sustainability, business models and data-driven questions.</p></section>
+    <div class="filter-bar"><input class="search-input" id="research-search" placeholder="Search publications..." aria-label="Search publications"/>{categories.map((c,i)=><button class="filter-button" data-filter={c} aria-pressed={i===0?"true":"false"}>{c}</button>)}</div>
+    <div class="research-list" id="research-list">
+      {papers.map(p=><a class="research-item" data-category={p.data.category} data-search={`${p.data.title} ${p.data.summary} ${p.data.tags.join(" ")}`.toLowerCase()} href={withBase(`research/${p.slug}/`)}><span class="eyebrow">{p.data.year || "ACADEMIC WORK"}</span><div><h3>{p.data.title}</h3><p>{p.data.summary}</p><div class="tag-list" style="margin-top:12px">{p.data.tags.map(t=><span class="tag sage">{t}</span>)}</div></div><span class="text-link">Read more ↗</span></a>)}
+    </div>
+    <script>
+      const buttons=[...document.querySelectorAll("[data-filter]")],cards=[...document.querySelectorAll("#research-list .research-item")],search=document.querySelector("#research-search");let active="All";
+      function update(){const q=search.value.toLowerCase();cards.forEach(c=>c.hidden=!((active==="All"||c.dataset.category===active)&&c.dataset.search.includes(q)));}
+      buttons.forEach(b=>b.addEventListener("click",()=>{active=b.dataset.filter;buttons.forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update();}));search.addEventListener("input",update);
+    </script>
+  </div>
+</BaseLayout>

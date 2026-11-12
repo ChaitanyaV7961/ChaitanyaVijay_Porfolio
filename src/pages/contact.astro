@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../utils/site";
+---
+<BaseLayout title="Contact — Chaitanya V.">
+  <div class="container">
+    <section class="page-intro" style="grid-template-columns:1fr .5fr">
+      <div><span class="eyebrow">CONTACT</span><h1 class="display-title">Let's work <em>together.</em></h1></div>
+      <div><span class="eyebrow">AVAILABILITY</span><h2 class="section-title" style="font-size:25px;margin-top:12px">Open to relevant opportunities.</h2></div>
+    </section>
+    <section class="content-section">
+      <p class="lead" style="max-width:900px">I'm interested in opportunities where I can bring together business understanding, analytical thinking and technology. You can find my professional profile and project work through the links below.</p>
+      <div class="contact-grid">
+        <div>
+          <a class="contact-link" href={site.github} target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+        </div>
+        <div class="body-copy"><span class="eyebrow">BASED IN</span><h2 class="section-title" style="margin:10px 0 18px">Ingolstadt, Germany.</h2><p>I'm currently pursuing my Master's at KU Eichstätt-Ingolstadt and building projects across business, data, AI and technology.</p><p class="eyebrow" style="margin-top:28px">LANGUAGES</p><p>English (C1) · German (B1)</p></div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

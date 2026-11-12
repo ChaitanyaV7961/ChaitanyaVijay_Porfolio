@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../../utils/site";
+const projects = await getCollection("projects");
+const categories = ["All", ...new Set(projects.map(p=>p.data.category))];
+---
+<BaseLayout title="Projects — Chaitanya V.">
+  <div class="container">
+    <section class="page-intro"><div><span class="eyebrow">SELECTED WORK</span><h1 class="display-title">Things I've <em>worked on.</em></h1></div><p class="lead">A selection of projects exploring business questions, data, automation and applied AI. Each case study will include the context, approach, tools and what I learned.</p></section>
+    <div class="filter-bar"><input class="search-input" id="project-search" placeholder="Search projects..." aria-label="Search projects"/>{categories.map((c,i)=><button class="filter-button" data-filter={c} aria-pressed={i===0?"true":"false"}>{c}</button>)}</div>
+    <div class="project-grid" id="project-grid">
+      {projects.map((p,i)=><a class="project-card" data-category={p.data.category} data-search={`${p.data.title} ${p.data.summary} ${p.data.tags.join(" ")}`.toLowerCase()} href={withBase(`projects/${p.slug}/`)}>
+        <div class="project-visual"><span class="visual-label">{p.data.category.toUpperCase()} / {p.data.status==="developing"?"IN DEVELOPMENT":"PROJECT"}</span></div>
+        <div class="project-content"><span class="eyebrow">{p.data.category}</span><h3>{p.data.title}</h3><p>{p.data.summary}</p><div class="tag-list">{p.data.tags.map((t,j)=><span class:list={["tag",j%3===1?"sage":j%3===2?"lavender":""]}>{t}</span>)}</div></div>
+      </a>)}
+    </div>
+    <script>
+      const buttons = [...document.querySelectorAll("[data-filter]")];
+      const cards = [...document.querySelectorAll("#project-grid .project-card")];
+      const search = document.querySelector("#project-search");
+      let active = "All";
+      function update() {
+        const q = search.value.toLowerCase();
+        cards.forEach(card => card.hidden = !((active==="All" || card.dataset.category===active) && card.dataset.search.includes(q)));
+      }
+      buttons.forEach(btn=>btn.addEventListener("click",()=>{active=btn.dataset.filter;buttons.forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));update();}));
+      search.addEventListener("input",update);
+    </script>
+  </div>
+</BaseLayout>
