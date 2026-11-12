@@ -5,6 +5,7 @@ category: "Data Analytics"
 tags: ["SQL", "PostgreSQL", "Tableau", "Business Analytics"]
 status: "completed"
 featured: true
+repo: "https://github.com/ChaitanyaV7961/E-commerce-Analytics-SQL-Tableau-"
 summary: "An analytics project using SQL, PostgreSQL and Tableau to explore e-commerce data and communicate business performance through visualisation."
 ---
 <section id="overview">

@@ -6,12 +6,13 @@ const allProjects = await getCollection("projects");
 const featuredOrder = ["briefkasten-ninja", "sentinel-1-sar-flood-mapping", "ecommerce-analytics"];
 const projects = featuredOrder.map(slug => allProjects.find(p => p.slug === slug)).filter(Boolean);
 ---
-<BaseLayout title="Chaitanya V. — Business | Data | AI | Technology" description="I work at the intersection of business, data, AI, and technology.">
+<BaseLayout title="Chaitanya Vijay — Business | Data | AI | Technology" description="I work at the intersection of business, data, AI, and technology.">
   <div class="container">
     <section class="home-hero">
       <div class="hero-copy">
-        <h1 class="display-title">I work at the intersection of business, data, AI, and <em>technology.</em></h1>
-        <p class="lead">I'm pursuing my Master's in Business Analytics & Operations Research at KU Eichstätt-Ingolstadt. My experience spans finance, business operations, analytics and process improvement.</p>
+        <h1 class="display-title hero-name">Chaitanya Vijay</h1>
+        <p class="hero-tagline">I work at the intersection of business, data, AI, and <em>technology.</em></p>
+        <p class="lead hero-summary">I'm pursuing my Master's in Business Analytics & Operations Research at KU Eichstätt-Ingolstadt. My experience spans finance, business operations, analytics and process improvement.</p>
         <p class="body-copy">Through my academic work and projects, I explore how data, automation and AI can solve practical business problems and create measurable impact.</p>
         <div class="hero-actions">
           <a class="button" href={withBase("projects/")}>Explore my projects <span>↗</span></a>

@@ -1,8 +1,14 @@
-# Chaitanya V. — Portfolio
+# Chaitanya Vijay — Portfolio
 
 Personal portfolio built with Astro and deployed to GitHub Pages.
 
-## Local development
+**Live site:** https://chaitanyav7961.github.io/ChaitanyaVijay_Porfolio/
+
+## Editing the website
+
+See **[EDITING_GUIDE.md](EDITING_GUIDE.md)** for step-by-step instructions to change text, fonts, colours, pages, projects, research entries, images, contact links and your CV directly in GitHub. You do not need to install anything locally for routine edits.
+
+## Local development (optional)
 
 ```bash
 npm install
@@ -11,17 +17,17 @@ npm run dev
 
 ## Deployment
 
-The GitHub Actions workflow in `.github/workflows/deploy.yml` builds the site and deploys it to GitHub Pages whenever changes are pushed to `main`.
+Changes committed to `main` trigger the GitHub Actions workflow in `.github/workflows/deploy.yml`. The workflow builds the Astro site and publishes it to GitHub Pages.
 
-Once deployment completes, the site will be available at: https://chaitanyav7961.github.io/ChaitanyaVijay_Porfolio/
+## Main content locations
 
-## Updating content
-
-- Project case studies: `src/content/projects/`
-- Research and writing: `src/content/research/`
-- About / experience / skills: `src/pages/about.astro`
 - Homepage: `src/pages/index.astro`
-- Contact links: `src/utils/site.ts` and `src/pages/contact.astro`
-- Images and downloadable files: `public/images/` and `public/files/`
+- About / work experience / skills: `src/pages/about.astro`
+- Contact: `src/pages/contact.astro`
+- Project descriptions: `src/content/projects/`
+- Research and writing: `src/content/research/`
+- Shared fonts, colours and layout styles: `src/styles/global.css` and `src/layouts/BaseLayout.astro`
+- Downloadable files: `public/files/`
+- Images: `public/images/`
 
-Project code, datasets, notebook files, screenshots and papers can be added under `public/files/` and linked from the relevant content pages. Do not add confidential employer data or personal information.
+Please do not upload confidential employer information, private datasets or documents you do not have permission to publish.

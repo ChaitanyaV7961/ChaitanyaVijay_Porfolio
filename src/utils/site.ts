@@ -1,14 +1,16 @@
 export const withBase = (path = "") => {
-  const base = import.meta.env.BASE_URL || "/";
-  const clean = path.startsWith("/") ? path.slice(1) : path;
-  return `${base}${clean}`;
+  // Astro's BASE_URL may be provided without a trailing slash.
+  // Always insert exactly one slash between the repository base and the path.
+  const base = (import.meta.env.BASE_URL || "/").replace(/\/+$/, "") + "/";
+  const clean = path.replace(/^\/+/, "");
+  return clean ? `${base}${clean}` : base;
 };
 
 export const site = {
-  name: "Chaitanya V.",
+  name: "Chaitanya Vijay",
   descriptor: "Business | Data | AI | Technology",
   email: "",
   linkedin: "",
   github: "https://github.com/ChaitanyaV7961",
-  cv: "/files/Chaitanya_V_CV.pdf"
+  cv: "files/Chaitanya_V_CV.pdf"
 };
